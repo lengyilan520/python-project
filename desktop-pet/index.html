@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>桌面萌宠</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- 萌宠说的话（气泡） -->
+    <div id="bubble" class="bubble hidden"></div>
+
+    <!-- 输入困惑的面板 -->
+    <div id="input-panel" class="panel hidden">
+      <div class="panel-title">把心事说给我听吧 🌿</div>
+      <textarea id="input" placeholder="你最近在为什么而烦恼呢？……"></textarea>
+      <div class="panel-actions">
+        <button id="cancel" class="btn ghost">先不说了</button>
+        <button id="send" class="btn primary">告诉它 💛</button>
+      </div>
+    </div>
+
+    <!-- 小精灵本体 -->
+    <div id="pet-wrap" class="pet-wrap" title="拖动可以移动我，双击说心事">
+      <svg class="pet" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff2cf" stop-opacity="0.85" />
+            <stop offset="100%" stop-color="#fff2cf" stop-opacity="0" />
+          </radialGradient>
+          <radialGradient id="bodyGrad" cx="50%" cy="34%" r="78%">
+            <stop offset="0%" stop-color="#fff1e4" />
+            <stop offset="100%" stop-color="#ffc9a6" />
+          </radialGradient>
+          <radialGradient id="orbGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff6cf" />
+            <stop offset="55%" stop-color="#ffd977" />
+            <stop offset="100%" stop-color="#ffc94d" />
+          </radialGradient>
+        </defs>
+
+        <!-- 温暖光晕 -->
+        <circle class="glow" cx="100" cy="122" r="84" fill="url(#glowGrad)" />
+
+        <!-- 漂浮的金色光球 -->
+        <circle class="orb left" cx="76" cy="40" r="7" fill="url(#orbGrad)" />
+        <circle class="orb right" cx="124" cy="40" r="7" fill="url(#orbGrad)" />
+
+        <!-- 身体 -->
+        <ellipse class="body" cx="100" cy="128" rx="55" ry="51" fill="url(#bodyGrad)" />
+
+        <!-- 猫耳朵（英短风：短小圆润） -->
+        <path class="ear left" d="M58 84 Q48 70 48 58 Q48 54 54 54 Q64 58 80 68 Z" fill="url(#bodyGrad)" stroke="#f0b48a" stroke-width="2" stroke-linejoin="round" />
+        <path class="ear-inner left" d="M62 78 Q54 68 54 62 Q54 59 58 59 Q64 61 74 64 Z" fill="#ffb8b8" />
+        <path class="ear right" d="M142 84 Q152 70 152 58 Q152 54 146 54 Q136 58 120 68 Z" fill="url(#bodyGrad)" stroke="#f0b48a" stroke-width="2" stroke-linejoin="round" />
+        <path class="ear-inner right" d="M138 78 Q146 68 146 62 Q146 59 142 59 Q136 61 126 64 Z" fill="#ffb8b8" />
+
+        <!-- 小手 -->
+        <g class="arm left">
+          <ellipse cx="45" cy="147" rx="9" ry="19" fill="#ffcfae" stroke="#f0b48a" stroke-width="2" />
+        </g>
+        <g class="arm right">
+          <ellipse cx="155" cy="147" rx="9" ry="19" fill="#ffcfae" stroke="#f0b48a" stroke-width="2" />
+        </g>
+
+        <!-- 大眼睛（左右各一组，方便单独眨眼） -->
+        <g class="eyes">
+          <g class="eye-group left">
+            <ellipse class="eye" cx="82" cy="122" rx="10" ry="13.5" />
+            <circle class="shine" cx="86" cy="116" r="3.6" />
+            <circle class="shine small" cx="80" cy="126" r="1.6" />
+          </g>
+          <g class="eye-group right">
+            <ellipse class="eye" cx="118" cy="122" rx="10" ry="13.5" />
+            <circle class="shine" cx="122" cy="116" r="3.6" />
+            <circle class="shine small" cx="116" cy="126" r="1.6" />
+          </g>
+        </g>
+
+        <!-- 腮红 -->
+        <ellipse class="blush" cx="66" cy="138" rx="11" ry="6.5" />
+        <ellipse class="blush" cx="134" cy="138" rx="11" ry="6.5" />
+
+        <!-- 微笑 -->
+        <path class="mouth" d="M94 142 Q100 149 106 142" />
+
+        <!-- 小脚 -->
+        <ellipse class="foot" cx="87" cy="177" rx="8" ry="5" />
+        <ellipse class="foot" cx="113" cy="177" rx="8" ry="5" />
+
+        <!-- 漂浮的魔法星尘 -->
+        <path class="star" d="M0,-7 Q0,0 7,0 Q0,0 0,7 Q0,0 -7,0 Q0,0 0,-7 Z" transform="translate(28,72)" style="animation-delay:0s" />
+        <path class="star" d="M0,-5 Q0,0 5,0 Q0,0 0,5 Q0,0 -5,0 Q0,0 0,-5 Z" transform="translate(172,66)" style="animation-delay:0.5s" />
+        <path class="star" d="M0,-5 Q0,0 5,0 Q0,0 0,5 Q0,0 -5,0 Q0,0 0,-5 Z" transform="translate(20,128)" style="animation-delay:1s" />
+        <path class="star" d="M0,-6 Q0,0 6,0 Q0,0 0,6 Q0,0 -6,0 Q0,0 0,-6 Z" transform="translate(178,124)" style="animation-delay:1.5s" />
+      </svg>
+    </div>
+
+    <!-- 打开输入框的小按钮 -->
+    <button id="chat-btn" class="chat-btn" title="说说你的心事">💬</button>
+
+    <!-- 点击反应粒子 -->
+    <div id="sparkles"></div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

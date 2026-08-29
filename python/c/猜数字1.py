@@ -7,7 +7,7 @@ for i in range(1,6):
         break
     elif num1>num:
         print('大了!')
-        continue
+        
     elif num1<num:
         print('小了!')  
-        continue
+        

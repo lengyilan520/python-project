@@ -47,16 +47,16 @@ def main():
         choice = int(input("请输入您的选择:"))
 
 
-        if choice == "1":
+        if choice == 1:
             check()
 
-        elif choice == "2":
+        elif choice == 2:
             deposit()
 
-        elif choice == "3":
+        elif choice == 3:
             withdraw()
 
-        elif choice == "4":
+        elif choice == 4:
             print("退出成功")
             break
 
