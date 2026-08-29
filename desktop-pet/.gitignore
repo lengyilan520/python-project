@@ -1,5 +1,0 @@
-# 依赖（体积大，不要提交）
-node_modules/
-
-# 密钥：不要提交，只提交 .env.example 作为模板
-.env
