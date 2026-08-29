@@ -1,0 +1,55 @@
+# —— 依赖与密钥 ——
+node_modules/
+.env
+
+# —— Windows / C/C++ 编译产物 ——
+*.exe
+*.obj
+*.o
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.exp
+*.res
+*.sys
+*.com
+*.scr
+*.a
+*.so
+*.dylib
+*.out
+
+# —— Python 缓存与构建产物 ——
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+*.egg
+build/
+dist/
+
+# —— 虚拟环境 ——
+.venv/
+venv/
+env/
+ENV/
+
+# —— 临时与日志文件 ——
+*.tmp
+*.temp
+*.log
+*.swp
+*.swo
+*~
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# —— IDE / 编辑器 ——
+.idea/
+.vscode/
+*.suo
+*.user
